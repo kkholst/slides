@@ -1,0 +1,101 @@
+#+Title: Introduction to Org-Reveal
+#+Author: Klaus Kähler Holst
+# +LaTeX_HEADER: \institute[short name]{My awesome institute}
+#+OPTIONS: reveal_center:nil reveal_progress:t reveal_history:nil reveal_control:t
+#+OPTIONS: reveal_mathjax:t reveal_rolling_links:t reveal_keyboard:t reveal_overview:t num:nil
+#+OPTIONS: reveal_width:1200 reveal_height:800
+#+OPTIONS: toc:nil
+#+REVEAL_MARGIN: 0.1
+#+REVEAL_MIN_SCALE: 0.5
+#+REVEAL_MAX_SCALE: 2.5
+#+REVEAL_TRANS: none
+#+REVEAL_THEME: biostat
+#+REVEAL_HLEVEL: 1
+#+REVEAL_HEAD_PREAMBLE: <meta name="description" content="Org-Reveal Introduction.">
+#+REVEAL_POSTAMBLE: <p> Created by Klaus K. Holst. </p>
+#+REVEAL_PLUGINS: (highlight markdown)
+#+PROPERTY: session *R*
+#+PROPERTY: cache yes 
+#+PROPERTY: exports both
+#+PROPERTY: tangle yes
+#+PROPERTY: results output
+
+* Tables
+
+
+#+ATTR_HTML: :width 50% :class col
+|     A |   B | C |
+|-------+-----+---|
+|-------+-----+---|
+| 12312 |  22 | 3 |
+|       | 2.0 |   |
+|       |     |   |
+|-------+-----+---|
+
+
+| a | b | c |
+|---+---+---|
+| 1 | 2 | 3 |
+| 3 | 4 | 5 |
+
+* R
+
+#+BEGIN_SRC R
+f <- function(x) x^2
+f(2)
+#+END_SRC
+
+#+RESULTS[<2014-07-02 10:24:39> a66f82651c1ef2315dd3a816d39431171b800918]:
+: [1] 4
+
+* Img
+
+[[./sund.png]]
+
+
+* Reveal.js and Org-Reveal
+
+  - *Reveal.js* is a tool for creating good-looking HTML presentations,
+    authored by [[hakim.se][Hakim El Hattab]]. \\
+    For an example of reveal.js presentation, click [[http://lab.hakim.se/reveal-js/#/][here]].
+  - *Org-Reveal* exports your [[http://orgmode.org/][Org]] documents to reveal.js
+    presentations.\\
+    With Org-reveal, you can create beautiful presentations with 3D
+    effects from simple but powerful Org contents.
+
+
+** B 2
+
+- A 
+- B 
+- C
+
+** A
+
+\begin{align*}
+\int_{a}^{b} f(x)\,dx
+\end{align*}
+
+
+* B
+
+\begin{align*}
+\int_{a}^{b} f(x)\,dx
+\end{align*}
+
+
+** Embedding rCharts 
+#+begin_src R :exports results :results silent
+  options(prompt = "> ")
+#+end_src
+
+#+begin_src R :exports both :results html
+  library(rCharts)
+  hair_eye_male = subset(as.data.frame(HairEyeColor), Sex == "Male")
+  n1 <- nPlot(Freq ~ Hair, group = 'Eye',
+  data = hair_eye_male, type = 'multiBarChart'
+  )
+  n1$set(width = 1200, height = 600)  
+  n1$show('inline', include_assets = TRUE, cdn = TRUE)
+#+end_src
+
